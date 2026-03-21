@@ -1,18 +1,10 @@
-import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
-import { getQueryClient, trpc } from '../trpc/server';
-import { ClientGreeting } from './client';
- 
-export default async function Home() {
-  const queryClient = getQueryClient();
-  void queryClient.prefetchQuery(
-    trpc.getUsers.queryOptions(),
-  );
- 
+import { LogoutButton } from "@/features/auth/components/logout-button";
+
+export default function Home() {
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <div>...</div>
-      {/** ... */}
-      <ClientGreeting />
-    </HydrationBoundary>
+    <div className="flex flex-col items-center justify-center min-h-screen gap-4">
+      <h1 className="text-3xl font-bold">Home</h1>
+      <LogoutButton />
+    </div>
   );
 }
