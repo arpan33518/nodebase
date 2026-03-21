@@ -6,6 +6,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { createTRPCClient, httpBatchLink } from '@trpc/client';
 import { createTRPCContext } from '@trpc/tanstack-react-query';
 import { useState } from 'react';
+import superjson from 'superjson';
 import { makeQueryClient } from './query-client';
 import type { AppRouter } from './routers/_app';
  
@@ -34,6 +35,17 @@ function getUrl() {
   return `${base}/api/trpc`;
 }
  
+/**
+ * Provides tRPC and React Query contexts to descendant components.
+ *
+ * This component obtains a QueryClient (reusing a browser-scoped instance when appropriate)
+ * and creates a single tRPC client instance for the provider mount, then renders `props.children`
+ * inside a `QueryClientProvider` and `TRPCProvider`.
+ *
+ * @param props - Component props.
+ * @param props.children - Child nodes that will receive the tRPC and React Query contexts.
+ * @returns The provided `children` wrapped with `QueryClientProvider` and `TRPCProvider`.
+ */
 export function TRPCReactProvider(
   props: Readonly<{
     children: React.ReactNode;
@@ -49,7 +61,7 @@ export function TRPCReactProvider(
     createTRPCClient<AppRouter>({
       links: [
         httpBatchLink({
-          // transformer: superjson, <-- if you use a data transformer
+          transformer: superjson,
           url: getUrl(),
         }),
       ],
