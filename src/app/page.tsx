@@ -13,6 +13,9 @@ export default function Home() {
   const testAi = useMutation(trpc.testAi.mutationOptions({
     onSuccess: () => {
       toast.success("Ai Job Queued");
+    },
+    onError: () => {
+      toast.error("Ai Job Failed");
     }
   }));
   const create = useMutation(trpc.createWorkflow.mutationOptions({
