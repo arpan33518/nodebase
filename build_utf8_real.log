@@ -1,0 +1,76 @@
+﻿
+> nodebase@0.1.0 build
+> next build --turbopack
+
+   Γû▓ Next.js 15.5.4 (Turbopack)
+   - Environments: .env
+   - Experiments (use with caution):
+     ┬╖ clientTraceMetadata
+
+   Creating an optimized production build ...
+ Γ£ô Finished writing to disk in 106ms
+ Γ£ô Compiled successfully in 9.3s
+   Running next.config.js provided runAfterProductionCompile ...
+ Γ£ô Completed runAfterProductionCompile in 20820ms
+   Linting and checking validity of types ...
+node.exe : Failed to 
+compile.
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
+    + CategoryInfo         
+     : NotSpecified: (Fai  
+  led to compile.:String   
+ ) [], RemoteException
+    + FullyQualifiedErrorI 
+   d : NativeCommandError
+ 
+
+.next/types/validator.ts:80
+:39
+Type error: File 'D:/Collag
+e/n8n-Flow/nodebase/src/app
+/(dashboard)/(rest)/credent
+ials/[credentialId]/page.ts
+x' is not a module.
+
+[0m [90m 78 |[39m {
+ [90m 79 |[39m   type __I
+sExpected[33m<[39m[33mSp
+ecific[39m 
+[36mextends[39m [33mAppP
+ageConfig[39m[33m<[39m[
+32m"/credentials/[credentia
+lId]"[39m[33m>>[39m 
+[33m=[39m 
+[33mSpecific[39m
+[31m[1m>[22m[39m[90m 
+80 |[39m   
+[36mconst[39m handler 
+[33m=[39m {} 
+[36mas[39m 
+[36mtypeof[39m [36mimpor
+t[39m([32m"../../src/app/
+(dashboard)/(rest)/credenti
+als/[credentialId]/page.js"
+[39m)
+ [90m    |[39m           
+                           
+ [31m[1m^[22m[39m
+ [90m 81 |[39m   type 
+__Check [33m=[39m __IsExp
+ected[33m<[39m[36mtypeof
+[39m handler[33m>[39m
+ [90m 82 |[39m   [90m// 
+@ts-ignore[39m
+ [90m 83 |[39m   type 
+__Unused [33m=[39m 
+__Check[0m
+Next.js build worker 
+exited with code: 1 and 
+signal: null
