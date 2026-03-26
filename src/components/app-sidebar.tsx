@@ -100,7 +100,26 @@ export const AppSidebar = () => {
               <SidebarMenuButton
                 tooltip="Upgade to Pro"
                 className="gap-x-4 h-10 px-4"
-                onClick={() => authClient.checkout({ slug: "pro" })}
+                onClick={async () => {
+                  try {
+                    // better-auth-client functions wrap API requests, we await the result
+                    const res: any = await authClient.checkout({ slug: "pro" }, {
+                      onSuccess: (context: any) => {
+                        if (context.data?.url) {
+                          window.location.href = context.data.url;
+                        }
+                      }
+                    });
+                    
+                    if (res?.data?.url) {
+                      window.location.href = res.data.url;
+                    } else if (res?.url) {
+                      window.location.href = res.url;
+                    }
+                  } catch (e) {
+                    console.error("Checkout error:", e);
+                  }
+                }}
               >
                 <StarIcon className="h-4 w-4" />
                 <span>Upgrade to Pro</span>

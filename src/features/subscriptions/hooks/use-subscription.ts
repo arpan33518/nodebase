@@ -1,17 +1,28 @@
+import { useQuery } from "@tanstack/react-query";
 import { authClient } from "@/lib/auth-client";
 
-export function useHasActiveSubscription() {
-  const { data: session, isPending } = authClient.useSession();
+export const useSubscription = () => {
+  return useQuery({
+    queryKey: ["subscription"],
+    queryFn: async () => {
+      const { data } = await authClient.customer.state();
+      return data;
+    },
+  });
+};
 
-  // better-auth with the Polar plugin exposes activeSubscriptions on the session user
-  const activeSubscriptions =
-    (session?.user as any)?.activeSubscriptions ?? [];
+export const useHasActiveSubscription = () => {
+  const { data: customerState, isLoading, ...rest } = 
+    useSubscription();
 
   const hasActiveSubscription =
-    Array.isArray(activeSubscriptions) && activeSubscriptions.length > 0;
+    customerState?.activeSubscriptions &&
+    customerState.activeSubscriptions.length > 0;
 
   return {
     hasActiveSubscription,
-    isLoading: isPending,
+    subscription: customerState?.activeSubscriptions?.[0],
+    isLoading,
+    ...rest,
   };
-}
+};
