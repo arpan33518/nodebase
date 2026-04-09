@@ -1,0 +1,33 @@
+﻿src/app/(dashboard)/(editor)/workflows/[workflowId]/page.tsx(5,8): error TS2306: File 'D:/Collage/n8n-Flow/nodebase/src/features/editor/components/editor.tsx' is not a module.
+src/app/page.tsx(12,34): error TS2551: Property 'getWorkflows' does not exist on type 'TRPCOptionsProxy<BuiltRouter<{ ctx: object; meta: object; errorShape: DefaultErrorShape; transformer: true; }, DecorateCreateRouterOptions<{ workflows: BuiltRouter<{ ctx: object; meta: object; errorShape: DefaultErrorShape; transformer: true; }, DecorateCreateRouterOptions<...>>; }>>, { ...; }>'. Did you mean 'workflows'?
+src/app/page.tsx(13,35): error TS2339: Property 'testAi' does not exist on type 'TRPCOptionsProxy<BuiltRouter<{ ctx: object; meta: object; errorShape: DefaultErrorShape; transformer: true; }, DecorateCreateRouterOptions<{ workflows: BuiltRouter<{ ctx: object; meta: object; errorShape: DefaultErrorShape; transformer: true; }, DecorateCreateRouterOptions<...>>; }>>, { ...; }>'.
+src/app/page.tsx(21,35): error TS2339: Property 'createWorkflow' does not exist on type 'TRPCOptionsProxy<BuiltRouter<{ ctx: object; meta: object; errorShape: DefaultErrorShape; transformer: true; }, DecorateCreateRouterOptions<{ workflows: BuiltRouter<{ ctx: object; meta: object; errorShape: DefaultErrorShape; transformer: true; }, DecorateCreateRouterOptions<...>>; }>>, { ...; }>'.
+src/app/page.tsx(23,42): error TS2551: Property 'getWorkflows' does not exist on type 'TRPCOptionsProxy<BuiltRouter<{ ctx: object; meta: object; errorShape: DefaultErrorShape; transformer: true; }, DecorateCreateRouterOptions<{ workflows: BuiltRouter<{ ctx: object; meta: object; errorShape: DefaultErrorShape; transformer: true; }, DecorateCreateRouterOptions<...>>; }>>, { ...; }>'. Did you mean 'workflows'?
+src/components/ui/chart.tsx(109,3): error TS2339: Property 'payload' does not exist on type 'Omit<Props<ValueType, NameType>, PropertiesReadFromContext> & { active?: boolean | undefined; allowEscapeViewBox?: AllowInDimension | undefined; ... 24 more ...; wrapperStyle?: CSSProperties | undefined; } & ClassAttributes<...> & HTMLAttributes<...> & { ...; }'.
+src/components/ui/chart.tsx(114,3): error TS2339: Property 'label' does not exist on type 'Omit<Props<ValueType, NameType>, PropertiesReadFromContext> & { active?: boolean | undefined; allowEscapeViewBox?: AllowInDimension | undefined; ... 24 more ...; wrapperStyle?: CSSProperties | undefined; } & ClassAttributes<...> & HTMLAttributes<...> & { ...; }'.
+src/components/ui/chart.tsx(183,20): error TS7006: Parameter 'item' implicitly has an 'any' type.
+src/components/ui/chart.tsx(184,17): error TS7006: Parameter 'item' implicitly has an 'any' type.
+src/components/ui/chart.tsx(184,23): error TS7006: Parameter 'index' implicitly has an 'any' type.
+src/components/ui/chart.tsx(262,39): error TS2344: Type '"payload" | "verticalAlign"' does not satisfy the constraint '"string" | "id" | "name" | "end" | "filter" | "fill" | "values" | "type" | "method" | "portal" | "path" | "nonce" | "in" | "result" | "cursor" | "mode" | "slot" | "style" | "clipPath" | ... 431 more ... | "onBBoxUpdate"'.
+  Type '"payload"' is not assignable to type '"string" | "id" | "name" | "end" | "filter" | "fill" | "values" | "type" | "method" | "portal" | "path" | "nonce" | "in" | "result" | "cursor" | "mode" | "slot" | "style" | "clipPath" | ... 431 more ... | "onBBoxUpdate"'.
+src/components/ui/chart.tsx(268,17): error TS2339: Property 'length' does not exist on type '{}'.
+src/components/ui/chart.tsx(281,10): error TS2339: Property 'filter' does not exist on type '{}'.
+src/components/ui/chart.tsx(281,18): error TS7006: Parameter 'item' implicitly has an 'any' type.
+src/components/ui/chart.tsx(282,15): error TS7006: Parameter 'item' implicitly has an 'any' type.
+src/components/ui/resizable.tsx(12,51): error TS2339: Property 'PanelGroup' does not exist on type 'typeof import("D:/Collage/n8n-Flow/nodebase/node_modules/react-resizable-panels/dist/react-resizable-panels")'.
+src/components/ui/resizable.tsx(14,25): error TS2339: Property 'PanelGroup' does not exist on type 'typeof import("D:/Collage/n8n-Flow/nodebase/node_modules/react-resizable-panels/dist/react-resizable-panels")'.
+src/components/ui/resizable.tsx(35,51): error TS2339: Property 'PanelResizeHandle' does not exist on type 'typeof import("D:/Collage/n8n-Flow/nodebase/node_modules/react-resizable-panels/dist/react-resizable-panels")'.
+src/components/ui/resizable.tsx(39,25): error TS2339: Property 'PanelResizeHandle' does not exist on type 'typeof import("D:/Collage/n8n-Flow/nodebase/node_modules/react-resizable-panels/dist/react-resizable-panels")'.
+src/components/ui/resizable.tsx(52,26): error TS2339: Property 'PanelResizeHandle' does not exist on type 'typeof import("D:/Collage/n8n-Flow/nodebase/node_modules/react-resizable-panels/dist/react-resizable-panels")'.
+src/config/node-components.ts(1,29): error TS2307: Cannot find module '@/components/initial-node' or its corresponding type declarations.
+src/config/node-components.ts(2,26): error TS2307: Cannot find module '@/generated/prisma' or its corresponding type declarations.
+src/config/node-components.ts(3,32): error TS2307: Cannot find module '@xyflow/react' or its corresponding type declarations.
+src/config/node-components.ts(5,33): error TS2307: Cannot find module '@/features/executions/components/http-request/node' or its corresponding type declarations.
+src/config/node-components.ts(6,35): error TS2307: Cannot find module '@/features/triggers/components/manual-trigger/node' or its corresponding type declarations.
+src/config/node-components.ts(7,35): error TS2307: Cannot find module '@/features/triggers/components/google-form-trigger/node' or its corresponding type declarations.
+src/config/node-components.ts(8,35): error TS2307: Cannot find module '@/features/triggers/components/stripe-trigger/node' or its corresponding type declarations.
+src/config/node-components.ts(9,28): error TS2307: Cannot find module '@/features/executions/components/gemini/node' or its corresponding type declarations.
+src/config/node-components.ts(10,28): error TS2307: Cannot find module '@/features/executions/components/openai/node' or its corresponding type declarations.
+src/config/node-components.ts(11,31): error TS2307: Cannot find module '@/features/executions/components/anthropic/node' or its corresponding type declarations.
+src/config/node-components.ts(12,29): error TS2307: Cannot find module '@/features/executions/components/discord/node' or its corresponding type declarations.
+src/config/node-components.ts(13,27): error TS2307: Cannot find module '@/features/executions/components/slack/node' or its corresponding type declarations.
