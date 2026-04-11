@@ -13,9 +13,10 @@ import { BaseNode } from "@/components/react-flow/base-node";
 
 export type PlaceholderNodeProps = Partial<NodeProps> & {
   children?: ReactNode;
+  onClick?: () => void;
 };
 
-export function PlaceholderNode({ children }: PlaceholderNodeProps) {
+export function PlaceholderNode({ children, onClick }: PlaceholderNodeProps) {
   const id = useNodeId();
   const { setNodes, setEdges } = useReactFlow();
 
@@ -48,7 +49,7 @@ export function PlaceholderNode({ children }: PlaceholderNodeProps) {
   return (
     <BaseNode
       className="bg-card w-[150px] border-dashed border-gray-400 p-2 text-center text-gray-400 shadow-none"
-      onClick={handleClick}
+      onClick={onClick ?? handleClick}
     >
       {children}
       <Handle
