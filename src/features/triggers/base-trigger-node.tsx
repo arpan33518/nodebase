@@ -4,12 +4,12 @@ import { type NodeProps, Position, useReactFlow, type Node, type Edge } from "@x
 import type { LucideIcon } from "lucide-react";
 import Image from "next/image";
 import { memo, type ReactNode, useCallback } from "react";
-import { BaseNode, BaseNodeContent } from "../../../components/react-flow/base-node";
-import { BaseHandle } from "../../../components/react-flow/base-handle";
-import { WorkflowNode } from "../../../components/workflow-node";
+import { BaseNode, BaseNodeContent } from "../../components/react-flow/base-node";
+import { BaseHandle } from "../../components/react-flow/base-handle";
+import { WorkflowNode } from "../../components/workflow-node";
 import { NodeStatus, NodeStatusIndicator } from "@/components/react-flow/node-status-indicator";
 
-interface BaseExecutionNodeProps extends NodeProps {
+interface BaseTriggerNodeProps extends NodeProps {
     icon: LucideIcon | string;
     name: string;
     description?: string;
@@ -19,34 +19,34 @@ interface BaseExecutionNodeProps extends NodeProps {
     onDoubleClick?: () => void;
 }
 
-export const BaseExecutionNode = memo(
+export const BaseTriggerNode = memo(
     ({
         id,
         icon: Icon,
         name,
         description,
         children,
-        status,
+        status="initial",
         onSettings,
         onDoubleClick,
-    }: BaseExecutionNodeProps) => {
+    }: BaseTriggerNodeProps) => {
+
         const { setNodes, setEdges } = useReactFlow();
 
         const handleDelete = () => {
             setNodes((currentNodes: Node[]) => {
-                return currentNodes.filter((node) => node.id !== id);
+                const updatedNodes = currentNodes.filter((node) => node.id !== id);
+                return updatedNodes;
             });
 
             setEdges((currentEdges: Edge[]) => {
-                return currentEdges.filter(
-                    (edge) => edge.source !== id && edge.target !== id
-                );
+                const updatedEdges = currentEdges.filter(
+                    (edge) => edge.source !== id && edge.target !== id);
+                return updatedEdges;
             });
         };
-
         return (
             <WorkflowNode
-
                 name={name}
                 description={description}
                 onDelete={handleDelete}
@@ -54,9 +54,13 @@ export const BaseExecutionNode = memo(
             >
                 <NodeStatusIndicator
                     status={status}
-                    variant="border">
+                    variant="border"
+                    className="rounded-l-2xl"
+                >
+                    <BaseNode status={status} onDoubleClick={onDoubleClick}
+                        className="rounded-l-2xl relative"
+                    >
 
-                    <BaseNode onDoubleClick={onDoubleClick}>
                         <BaseNodeContent>
                             {typeof Icon === "string" ? (
                                 <Image src={Icon} alt={name} width={16} height={16} />
@@ -81,3 +85,4 @@ export const BaseExecutionNode = memo(
         );
     },
 );
+BaseTriggerNode.displayName = "BaseTriggerNode";

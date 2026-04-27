@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useCallback } from 'react';
-import { 
-  ReactFlow, 
-  applyNodeChanges, 
-  applyEdgeChanges, 
+import { useState, useCallback, useMemo } from 'react';
+import {
+  ReactFlow,
+  applyNodeChanges,
+  applyEdgeChanges,
   addEdge,
   type Node,
   type Edge,
@@ -20,12 +20,13 @@ import { ErrorView, LoadingView } from "@/components/entity-components";
 import { useSuspenseWorkflow } from "@/features/workflows/hooks/use-workflows";
 
 import '@xyflow/react/dist/style.css';
-import { nodeComponents } from '@/config/node-components';
+
 import { AddNodeButton } from './add-node-button';
-// import { AddNodeButton } from './add-node-button';
-// import { useSetAtom } from 'jotai';
-// import { editorAtom } from '../store/atoms';
-// import { NodeType } from '@/generated/prisma';
+import { useSetAtom } from 'jotai';
+import { editorAtom } from '../store/atoms';
+import { NodeType } from '@/generated/prisma/enums';
+import { nodeComponents } from '@/config/node-components';
+import { ExecuteWorkflowButton } from './execute-workflow-button';
 
 
 export const EditorLoading = () => {
@@ -37,11 +38,11 @@ export const EditorError = () => {
 };
 
 export const Editor = ({ workflowId }: { workflowId: string }) => {
-  const { 
+  const {
     data: workflow
   } = useSuspenseWorkflow(workflowId);
 
-  // const setEditor = useSetAtom(editorAtom);
+  const setEditor = useSetAtom(editorAtom);
 
   const [nodes, setNodes] = useState<Node[]>(workflow.nodes);
   const [edges, setEdges] = useState<Edge[]>(workflow.edges);
@@ -59,9 +60,9 @@ export const Editor = ({ workflowId }: { workflowId: string }) => {
     [],
   );
 
-  // const hasManualTrigger = useMemo(() => {
-  //   return nodes.some((node) => node.type === NodeType.MANUAL_TRIGGER);
-  // }, [nodes]);
+  const hasManualTrigger = useMemo(() => {
+    return nodes.some((node) => node.type === NodeType.MANUAL_TRIGGER);
+  }, [nodes]);
 
   return (
     <div style={{ width: '100%', height: 'calc(100vh - 3.5rem)' }}>
@@ -72,7 +73,7 @@ export const Editor = ({ workflowId }: { workflowId: string }) => {
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         nodeTypes={nodeComponents}
-        // onInit={setEditor}
+        onInit={setEditor}
         fitView
         snapGrid={[10, 10]}
         snapToGrid
@@ -86,11 +87,11 @@ export const Editor = ({ workflowId }: { workflowId: string }) => {
         <Panel position="top-right">
           <AddNodeButton />
         </Panel>
-        {/* {hasManualTrigger && (
+        {hasManualTrigger && (
           <Panel position="bottom-center">
             <ExecuteWorkflowButton workflowId={workflowId} />
           </Panel>
-        )} */}
+        )}
       </ReactFlow>
     </div>
   );

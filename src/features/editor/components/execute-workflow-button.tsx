@@ -7,6 +7,7 @@ export const ExecuteWorkflowButton = ({
 }: {
   workflowId: string;
 }) => {
+
   const executeWorkflow = useExecuteWorkflow();
 
   const handleExecute = () => {
@@ -20,4 +21,3 @@ export const ExecuteWorkflowButton = ({
     </Button>
   );
 };
-
