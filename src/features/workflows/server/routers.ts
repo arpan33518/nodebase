@@ -6,7 +6,6 @@ import z from "zod";
 import { PAGINATION } from "@/config/constants";
 import { NodeType } from "@/generated/prisma/client";
 import { inngest } from "@/inngest/client";
-// import { sendWorkflowExecution } from "@/inngest/utils";
 
 export const workflowsRouter = createTRPCRouter({
   execute: protectedProcedure
@@ -19,9 +18,10 @@ export const workflowsRouter = createTRPCRouter({
         },
       });
 
-      // await sendWorkflowExecution({
-      //   workflowId: input.id,
-      // });
+      await inngest.send({
+        name: "workflows/execute.workflow",
+        data: { workflowId: input.id, initialData: {} }
+      });
 
       return workflow;
     }),
@@ -52,8 +52,8 @@ export const workflowsRouter = createTRPCRouter({
     }),
   update: protectedProcedure
     .input(
-      z.object({ 
-        id: z.string(), 
+      z.object({
+        id: z.string(),
         nodes: z.array(
           z.object({
             id: z.string(),
@@ -177,7 +177,7 @@ export const workflowsRouter = createTRPCRouter({
         prisma.workflow.findMany({
           skip: (page - 1) * pageSize,
           take: pageSize,
-          where: { 
+          where: {
             userId: ctx.auth.user.id,
             name: {
               contains: search,

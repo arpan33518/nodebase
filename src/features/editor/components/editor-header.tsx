@@ -13,38 +13,38 @@ import {
 import { Input } from "@/components/ui/input";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { useSuspenseWorkflow, useUpdateWorkflowName, useUpdateWorkflowData } from "@/features/workflows/hooks/use-workflows";
-// import { useAtomValue } from "jotai";
-// import { editorAtom } from "../store/atoms";
+import { useSuspenseWorkflow, useUpdateWorkflowName, useUpdateWorkflow } from "@/features/workflows/hooks/use-workflows";
+import { useAtomValue } from "jotai";
+import { editorAtom } from "../store/atoms";
 
-// export const EditorSaveButton = ({ workflowId }: { workflowId: string }) => {
-//   // const editor = useAtomValue(editorAtom);
-//   const saveWorkflow = useUpdateWorkflowData();
+export const EditorSaveButton = ({ workflowId }: { workflowId: string }) => {
+  const editor = useAtomValue(editorAtom);
+  const saveWorkflow = useUpdateWorkflow();
 
-//   // const handleSave = () => {
-//   //   if (!editor) {
-//   //     return;
-//   //   }
+  const handleSave = () => {
+    if (!editor) {
+      return;
+    }
 
-//     // const nodes = editor.getNodes();
-//     // const edges = editor.getEdges();
+    const nodes = editor.getNodes();
+    const edges = editor.getEdges();
 
-//     // saveWorkflow.mutate({
-//     //   id: workflowId,
-//     //   nodes: JSON.stringify(nodes),
-//     //   edges: JSON.stringify(edges),
-//     // });
-//   }
+    saveWorkflow.mutate({
+      id: workflowId,
+      nodes,
+      edges,
+    });
+  }
 
-//   return (
-//     <div className="ml-auto">
-//       <Button size="sm" onClick={handleSave} disabled={saveWorkflow.isPending}>
-//         <SaveIcon className="size-4" />
-//         Save
-//       </Button>
-//     </div>
-//   )
-// };
+  return (
+    <div className="ml-auto">
+      <Button size="sm" onClick={handleSave} disabled={saveWorkflow.isPending}>
+        <SaveIcon className="size-4" />
+        Save
+      </Button>
+    </div>
+  )
+};
 
 export const EditorNameInput = ({ workflowId }: { workflowId: string }) => {
   const { data: workflow } = useSuspenseWorkflow(workflowId);
@@ -140,7 +140,7 @@ export const EditorHeader = ({ workflowId }: { workflowId: string }) => {
       <SidebarTrigger />
       <div className="flex flex-row items-center justify-between gap-x-4 w-full">
         <EditorBreadcrumbs workflowId={workflowId} />
-        {/* <EditorSaveButton workflowId={workflowId} /> */}
+        <EditorSaveButton workflowId={workflowId} />
       </div>
     </header>
   );

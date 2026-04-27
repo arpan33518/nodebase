@@ -17,7 +17,7 @@ import { useUpgradeModal } from "@/hooks/use-upgrade-modal";
 import { useRouter } from "next/navigation";
 import { useWorkflowsParams } from "../hooks/use-workflows-params";
 import { useEntitySearch } from "@/hooks/use-entity-search";
-import type { WorkflowModel as Workflow } from "@/generated/prisma/models/Workflow";
+import type { WorkflowModel as Workflow } from "@/hooks/generated/prisma/models/Workflow";
 import { WorkflowIcon } from "lucide-react";
 
 
